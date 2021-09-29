@@ -8,10 +8,11 @@ int numBouncers;
 
 void setup() {
   
+  frameRate(6000);
   size(1000, 750);
-  background(0);
+
   
-  numMovers = 2500;
+  numMovers = 100;
   movers = new Mover[numMovers];
   int i = 0;
   while (i < numMovers) {
@@ -19,7 +20,7 @@ void setup() {
     i = i + 1;
   }
   
-  numBouncers = 500;
+  numBouncers = 50;
   bouncers = new Bouncer[numBouncers];
   int j = 0;
   while (j < numBouncers) {
@@ -33,10 +34,12 @@ void setup() {
 
 void draw() {
   
+    background(0);
+    
   int i = 0;
   while (i < numMovers) {
-     movers[i].show();
-     movers[i].act();
+     //movers[i].show();
+     //movers[i].act();
     
     i = i + 1;
   }

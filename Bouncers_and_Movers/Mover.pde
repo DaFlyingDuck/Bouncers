@@ -8,7 +8,7 @@ class Mover {
     
    x = width/2;
    y = height/2;
-   size = random(1,2);
+   size = random(3,3);
    r = random(0,255);
    g = random(0,255);
    b = random(0,255);
@@ -17,8 +17,8 @@ class Mover {
   
   void act() {
     
-    x = x + random(-25,25);
-    y = y + random(-25,25);
+    x = x + random(-3,3);
+    y = y + random(-3,3);
     
   }
   
