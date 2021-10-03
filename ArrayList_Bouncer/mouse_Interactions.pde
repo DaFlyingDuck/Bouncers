@@ -1,5 +1,9 @@
 void mouseReleased() {
  
-  bouncers.add( new Bouncer() );
+  int k = 0;
+  while (k < 10) {
+    bouncers.add( new Bouncer() );
+    k ++;
+  }
   
 }
