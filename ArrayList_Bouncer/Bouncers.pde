@@ -1,7 +1,7 @@
 class Bouncer {
   
-  float x, y;
-  float vx, vy;
+  PVector loc;
+  PVector vel;
   float r,g,b;
   float size;
   int hp;
@@ -10,11 +10,9 @@ class Bouncer {
   Bouncer() {
     
     hp = 1;
-    x = mouseX;
-    y = mouseY;
+    loc = new PVector(mouseX,mouseY);
+    vel = new PVector(random(-4,4),random(-4,4));
     size = random(6,18);
-    vx = random(-4,4);
-    vy = random(-4,4);
     r = random(0,255);
     g = random(0,255);
     b = random(0,255);
@@ -24,17 +22,16 @@ class Bouncer {
   void act() {
    
     // movement of the bouncers 
-    x = x + vx;
-    y = y + vy;
+    loc.add(vel);
    
     //bouncing off of walls
-    if (x > width - size || x < size) {
-      vx = vx * -1;
+    if (loc.x > width - size || loc.x < size) {
+      vel.x = vel.x * -1;
       hp --;
     }
     
-    if (y > height - size || y < size) {
-      vy = vy * -1;
+    if (loc.y > height - size || loc.y < size) {
+      vel.y = vel.y * -1;
       hp --;
     }
     
@@ -42,11 +39,11 @@ class Bouncer {
     int j = 0;
     while (j < bouncers.size()) {
       
-      if(x != bouncers.get(j).x && y != bouncers.get(j).y) { // if not checking itself so it doesnt bounce off of itself
-        if (dist(x, y, bouncers.get(j).x, bouncers.get(j).y) < (size/2 + (bouncers.get(j).size)/2)) { //if its contacting another ball
+      if(loc.x != bouncers.get(j).loc.x && loc.y != bouncers.get(j).loc.y) { // if not checking itself so it doesnt bounce off of itself
+        if (dist(loc.x, loc.y, bouncers.get(j).loc.x, bouncers.get(j).loc.y) < (size/2 + (bouncers.get(j).size)/2)) { //if its contacting another ball
           
-          vx = -(bouncers.get(j).x - x)/5;
-          vy = -(bouncers.get(j).y - y)/5;
+          vel.x = -(bouncers.get(j).loc.x - loc.x)/5;
+          vel.y = -(bouncers.get(j).loc.y - loc.y)/5;
       
         }
       }
@@ -60,7 +57,7 @@ class Bouncer {
     
     strokeWeight(.2);
     fill(r,g,b);
-    circle(x,y,size);
+    circle(loc.x,loc.y,size);
     
     
   }
